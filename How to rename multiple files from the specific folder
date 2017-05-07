@@ -1,0 +1,14 @@
+import os  
+def rename_files():
+  
+  file_list = os.listdir(r"---------------------------")  #specify your folder path here
+  
+  os.chdir(r"------------------------------")             #r stands for raw path,it indicates take folder path as it is.
+  
+  for name in file_list:                                  #loop to rename all files 
+  
+    os.rename(name,name.translate(None,'1234567890"))     #rename function will rename file by removing any numbers from file names.
+  
+  print(file_list)                                        #will print all renamed files without having numbers in there file names.
+  
+rename_files()                                            #rename_files() function block finish here.
