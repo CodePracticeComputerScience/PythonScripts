@@ -24,3 +24,5 @@ txt = xpathSApply(doc,
                   "//body//text()[not(ancestor::script) and not(ancestor::otherElement)]",
                   xmlValue)
 
+txt
+
