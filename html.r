@@ -25,4 +25,5 @@ txt = xpathSApply(doc,
                   xmlValue)
 
 txt
+txt
 
