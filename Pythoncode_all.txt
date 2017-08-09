@@ -111,4 +111,254 @@ def abc():
 # calling function
 abc()
 
+def bitcoin_to_usd(btc):
+    amount = btc * 527
+    print (amount)
+
+bitcoin_to_usd(3)
+
+# Return values
+# instead of printing storing values into variable by using return statement 
+
+def allowed_voting_age (my_age):
+    age = my_age/2 + 7
+    return age
+age_limit = allowed_voting_age(34)
+age_limit_other = allowed_voting_age(48)
+print("who can vote:",age_limit,"or older age")
+print("who can vote:",age_limit_other,"or older age")
+
+# default values for arguments Aanlyze again???
+
+def get_gender(gender):
+    if gender is 'm':
+        gender = "male"
+    elif gender is 'f':
+        gender = "female"
+    else:
+     print(gender)
+
+
+get_gender("m")
+
+# variable scope
+
+
+a = 2333
+
+def corn():
+    print(a)
+
+def fudge():
+    print(a)
+
+corn()
+fudge()
+
+#ERROR
+
+def corn():
+    a = 2333
+    print(a)
+
+def fudge():
+    print(a)
+
+corn()
+fudge()
+
+#diiferent scope for same variable
+
+def corn():
+    a = 2333
+    print(a)
+
+def fudge():
+    a =56
+    print(a)
+
+corn()
+fudge()
+
+#keyword arguments
+
+def abc(name ="kp",number = 123,item = "kite"):
+    print(name,number,item)
+abc(name = "",item = "mgfk")
+
+#function which can take flexible number of arguments
+
+def add_numbers(*args):
+    total = 0
+    for a in args:
+        total += a
+    print(total)
+
+add_numbers(2)
+add_numbers(2,4,6,7)
+add_numbers(36,78,23,45,79,90)
+
+#another example
+
+def health_calculator(age,apples_ate,cigs_smoked):
+    answer = (100-age) + apples_ate * 3.5 - (cigs_smoked *2)
+    print(answer)
+
+data = [27,20,55]
+
+health_calculator(data[0],data[1],data[2])
+# shortcut way to get answer
+health_calculator(*data)
+
+# sets  is collection of item without duplicate
+
+groceries = {'milk','almond','juice','yoghurt','milk','juice'}
+
+print(groceries)
+
+# dictionary
+
+classmates = {'don': ' cool guy','gary' : ' too much funny','aska' : ' strange but nice'}
+
+print(classmates['don'])
+
+for k,v in classmates.items():
+    print(k ,v)
+
+# modules are other files which we just use in our program
+# scenario : we are using function from file pycharm2.py in current program
+
+import pycharm2
+
+pycharm2.abc()
+
+# another example
+
+import random
+
+x = random.randrange(1,1000)
+print(x)
+
+#to install other modules go to settings/project interpreter and click on + sign and install
+# if you dont want that module click - sign and delete it
+
+#download an image from the web
+
+import random
+import urllib.request
+
+def download_web_image(url):
+    random_number = random.randrange(1,1000)
+    full_name = str(random_number) + ".jpg"
+    urllib.request.urlretrieve(url,full_name)
+
+# error because of firewall and all but this is how we download an image from internet
+
+download_web_image("https://www.gstatic.com/webp/gallery/4.sm.jpg")
+
+#solution and troubleshoot
+
+1)google for the same error look for answers.
+2)look all errors from last to first sequencially.
+3)error was related to handshake ans ssl certificate.so pycharm client has not proper ssl certificate.we have to provide it.
+4)in internet browser by copying weblink of image ,we will get an idea that it is working fine.so that means it has all ssl certificates.
+5)what we need to do in this case is download this certificate and point out pycharm to that.
+6)how to download that certificate:go to that image in browser --go to more  tools -- developer tools --security -- view certificate--details--here you can also make sure your content is coming from trusted source.--details -- copy to file -- save it somewhere in system--so now we have necessary ssl certificate.
+7)now go to pycharm and go to files--settings--serch for python console--environment --environment variables-- give name as REQUESTS_CA_BUNDLE--value is the full path of downloaded ssl certificate--click ok --ok
+8)now try to run again it should work 
+
+
+# how to write in files
+
+# make that file
+fw = open('sample1.txt','w')
+# write in this file
+fw.write('writing in text file\n')
+fw.write('I like writing\n')s
+
+# close this file after done to save resources
+fw.close()
+
+
+# this is the location where it by default make a text file ,if you want to make it somewhere else just specify full path.
+
+C:\Users\Pankaj\PycharmProjects\PythonPycharm1\sample.txt
+
+# how to read from files
+
+fr = open('sample.txt','r')
+text = fr.read()
+print(text)
+fr.close()
+
+'''The syntax to open a file object in Python is: 
+
+file_object  = open(“filename”, “mode”) where file_object is the variable to add the file object. 
+The second argument you see – mode – tells the interpreter and developer which way the file will be used.
+Mode
+
+Including a mode argument is optional because a default value of ‘r’ will be assumed if it is omitted. The ‘r’ value stands for read mode, which is just one of many. 
+
+The modes are: 
+
+‘r’ – Read mode which is used when the file is only being read 
+‘w’ – Write mode which is used to edit and write new information to the file (any existing files with the same name will be erased when this mode is activated) 
+‘a’ – Appending mode, which is used to add new data to the end of the file; that is new information is automatically amended to the end 
+‘r+’ – Special read and write mode, which is used to handle both actions when working with a file
+'''
+# downloading files from web
+
+from urllib import request
+
+google_url = 'https://catalog.data.gov/dataset/american-factfinder-ii'
+
+
+def download_data(csv_url):
+
+    response = request.urlopen(csv_url)
+    csv = response.read()
+    csv_str = str(csv)
+    lines = csv_str.split("\\n")
+    dest_url = r'goog.csv'
+    fx = open(dest_url,"w")
+    for line in lines:
+        fx.write(line + "\n")
+    fx.close()
+
+download_data(google_url)
+
+#WEB CROWLER
+
+import requests
+from bs4 import BeautifulSoup
+
+def trade_spider(max_pages):
+    page = 1
+    while page <= max_pages:
+        url = 'http://www.coloring.ws/coloring.html'+ str(page)
+        print (1)
+        source_code = requests.get(url)
+        print (2)
+        soup = BeautifulSoup(source_code.text,'html.parser')
+        print (3)
+        for link in soup.findAll('img'):
+            print (4)
+            href = link.get('src')
+            print(href)
+           
+            
+        page += 1
+
+trade_spider(5)
+
+
+
+
+ 
+
+
+
+
+
+
 
