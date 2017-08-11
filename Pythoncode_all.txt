@@ -1,3 +1,4 @@
+#notes
 #if statement
 
 a = 12
