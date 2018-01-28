@@ -1,4 +1,4 @@
-Assignment 1
+#Assignment 1
 
 #Due January 30 at noon, submit via blackboard.
 
@@ -16,8 +16,12 @@ def mot (n) :
         for r in mot(n-2-k) :        
           yield ('binary',l,r)
 
+    
 def test() :
   for n in range(6) :
     print(list(mot(n))) 
     
+
+if __name__ == '__main__':
+    test();
 #Write a program that generates the same output in C/C++ or Java.
