@@ -36,7 +36,7 @@ public class Motzkin {
 			
 
 		}
-		return  unaryReturn + binaryReturn;
+		yield  unaryReturn + binaryReturn;
 		
 	}
 	/**
