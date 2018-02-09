@@ -7,5 +7,6 @@ def quicksort(x):
           greater = [i for i in x[1:] if i > pivot]
           return quicksort(less) + [pivot] + quicksort(greater)
       
-alist = [54,26,93,17,77,31,44,55,20]
+#alist = [54,26,93,17,77,31,44,55,20]
+alist = [3,2,3]
 print(quicksort(alist))
